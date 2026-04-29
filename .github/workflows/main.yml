@@ -32,13 +32,12 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to Hostinger via SSH
-        uses: easingthemes/ssh-deploy@main
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v5.1.0
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: "dist/"
-          REMOTE_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
-          REMOTE_USER: ${{ secrets.HOSTINGER_SSH_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOSTINGER_HOST }}
           SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
-          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+          REMOTE_USER: ${{ secrets.HOSTINGER_USER }}
+          REMOTE_PATH: ${{ secrets.HOSTINGER_REMOTE_PATH }}
+          SOURCE: dist/
