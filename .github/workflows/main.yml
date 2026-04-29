@@ -37,7 +37,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.HOSTINGER_HOST }}
-          SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          REMOTE_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
           REMOTE_USER: ${{ secrets.HOSTINGER_USER }}
-          REMOTE_PATH: ${{ secrets.HOSTINGER_REMOTE_PATH }}
+          TARGET: ${{ secrets.HOSTINGER_REMOTE_PATH }}
           SOURCE: dist/
