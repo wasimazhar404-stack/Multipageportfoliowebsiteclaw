@@ -27,7 +27,7 @@ export function NotFound() {
             <Home size={15} /> Go Home
           </Link>
           <Link
-            to="/library"
+            to="/quicklearn"
             className="inline-flex items-center gap-2 px-6 py-3 border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-semibold rounded-lg text-sm transition-all"
           >
             <BookOpen size={15} /> Browse Library

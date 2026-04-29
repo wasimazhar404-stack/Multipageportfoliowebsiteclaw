@@ -189,7 +189,7 @@ export function Services() {
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  to="/library"
+                  to="/quicklearn"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg text-sm shadow-sm transition-all"
                 >
                   Browse Travel Guides <ArrowRight size={15} />
@@ -243,7 +243,7 @@ export function Services() {
 
           <div className="text-center mt-10">
             <Link
-              to="/library"
+              to="/quicklearn"
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg text-sm shadow-md transition-all"
             >
               View Full Library <ArrowRight size={15} />

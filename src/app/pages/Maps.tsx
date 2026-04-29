@@ -166,7 +166,7 @@ export function Maps() {
             Our detailed travel guides include these maps plus step-by-step itineraries, budget plans, and insider tips.
           </p>
           <Link
-            to="/library"
+            to="/quicklearn"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-lg text-sm shadow-lg shadow-orange-500/25 transition-all"
           >
             Browse Travel Guides <ArrowRight size={15} />

@@ -231,14 +231,14 @@ export function Home() {
                 className="flex flex-wrap gap-3"
               >
                 <Link
-                  to="/services"
+                  to="/automate-grow"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-full transition-all text-sm"
                 >
                   See what we build
                   <ArrowUpRight size={15} />
                 </Link>
                 <Link
-                  to="/library"
+                  to="/quicklearn"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-50 text-slate-900 font-semibold rounded-full transition-all text-sm border border-slate-900"
                 >
                   Browse the library
@@ -258,7 +258,7 @@ export function Home() {
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold text-slate-900 text-sm">QuickLearn Library</h3>
                   <Link
-                    to="/library"
+                    to="/quicklearn"
                     className="text-xs text-orange-500 hover:text-orange-600 font-semibold inline-flex items-center gap-1"
                   >
                     110+ titles <ArrowRight size={12} />
@@ -481,7 +481,7 @@ export function Home() {
               </h2>
             </div>
             <Link
-              to="/library"
+              to="/quicklearn"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors"
             >
               View all 110+ books <ArrowRight size={15} />
