@@ -14,9 +14,9 @@ export const router = createBrowserRouter(
       Component: Layout,
       children: [
         { index: true,            Component: Home     },
-        { path: "services",       Component: Services },
-        { path: "library",        Component: Library  },
-        { path: "maps",           Component: Maps     },
+        { path: "automate-grow",  Component: Services },
+        { path: "quicklearn",     Component: Library  },
+        { path: "umrah-tours",    Component: Maps     },
         { path: "contact",        Component: Contact  },
         { path: "*",              Component: NotFound },
       ],

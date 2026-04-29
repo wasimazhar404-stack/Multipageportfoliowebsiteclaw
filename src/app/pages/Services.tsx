@@ -17,7 +17,7 @@ function SectionTag({ label }: { label: string }) {
 
 export function Services() {
   useEffect(() => {
-    document.title = "Our Services | QuickFare Travels & Solutions";
+    document.title = "Automate & Grow | QuickFare";
   }, []);
 
   return (
@@ -26,7 +26,7 @@ export function Services() {
       <section className="relative pt-32 pb-20 text-center bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <SectionTag label="Our Services" />
+            <SectionTag label="Automate & Grow" />
             <h1 className="text-slate-900 text-4xl md:text-5xl font-bold mb-5" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Everything you need, <span className="text-orange-500">in one place</span>
             </h1>

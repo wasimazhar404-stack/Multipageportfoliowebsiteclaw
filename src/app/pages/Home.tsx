@@ -171,100 +171,184 @@ export function Home() {
     document.title = "QuickFare | Digital Solutions for Pakistani Businesses";
   }, []);
   const [previewBook, setPreviewBook] = useState<Ebook | null>(null);
+  const [heroBookIndex, setHeroBookIndex] = useState(0);
 
   return (
     <div className="overflow-x-hidden">
       {/* HERO */}
-      <section className="relative min-h-[90vh] flex items-center bg-white">
+      <section className="relative min-h-[90vh] flex items-center bg-[#faf8f5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-          <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-6"
-            >
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-orange-500 bg-orange-50 px-3 py-1.5 rounded-full border border-orange-100">
-                <Zap size={12} />
-                Digital Solutions for Pakistani Businesses
-              </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6"
-              style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-            >
-              <span className="text-slate-900">digital studio for </span>
-              <span className="text-orange-500">serious operators.</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-slate-500 text-lg sm:text-xl max-w-2xl leading-relaxed mb-10"
-            >
-              We build CRM and automation systems for Pakistani businesses, and publish
-              a high-end digital library that has saved travellers and founders crores
-              of rupees in mistakes.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="flex flex-wrap gap-3 mb-16"
-            >
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg transition-all text-sm shadow-sm"
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+            {/* Left column */}
+            <div className="lg:col-span-3">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-6"
               >
-                See what we build
-                <ArrowUpRight size={15} />
-              </Link>
-              <Link
-                to="/library"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 hover:border-slate-300 text-slate-700 hover:text-slate-900 font-semibold rounded-lg transition-all text-sm bg-white"
-              >
-                Browse the library
-                <ArrowRight size={15} />
-              </Link>
-              <a
-                href="https://wa.me/923220532596"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-lg transition-all text-sm shadow-sm shadow-orange-500/20"
-              >
-                <MessageCircle size={15} />
-                Chat on WhatsApp
-              </a>
-            </motion.div>
+                <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-orange-600 bg-orange-100/60 px-3 py-1.5 rounded-full border border-orange-200/50">
+                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                  NOW BOOKING — MAY 2026
+                </span>
+              </motion.div>
 
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pt-8 border-t border-slate-100"
-            >
-              {[
-                { value: 12000, suffix: "+", label: "Verified Pakistani buyers", prefix: "" },
-                { value: 32, suffix: "L", label: "Avg. saved by self-planners", prefix: "Rs" },
-                { value: 48, suffix: "hr", label: "WhatsApp support response", prefix: "" },
-                { value: 98, suffix: "%", label: "Client satisfaction rate", prefix: "" },
-              ].map(({ value, suffix, label, prefix }) => (
-                <div key={label}>
-                  <div className="text-2xl md:text-3xl font-bold text-slate-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                    {prefix}<Counter target={value} suffix={suffix} />
-                  </div>
-                  <p className="text-slate-400 text-xs mt-1">{label}</p>
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.15 }}
+                className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-4"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                <span className="text-slate-900">The growth partner for Pakistani businesses —</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.25 }}
+                className="text-3xl sm:text-4xl md:text-5xl italic text-orange-500 font-light leading-[1.15] tracking-tight mb-6"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
+                systems, travel & knowledge, handled.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.35 }}
+                className="text-slate-500 text-base sm:text-lg max-w-xl leading-relaxed mb-10"
+              >
+                We build custom CRMs & automations for Pakistani businesses, wired into
+                the tools you already use. Plus a premium digital library that has saved
+                travellers and founders crores of rupees in mistakes.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.45 }}
+                className="flex flex-wrap gap-3"
+              >
+                <Link
+                  to="/services"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-full transition-all text-sm"
+                >
+                  See what we build
+                  <ArrowUpRight size={15} />
+                </Link>
+                <Link
+                  to="/library"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-50 text-slate-900 font-semibold rounded-full transition-all text-sm border border-slate-900"
+                >
+                  Browse the library
+                  <ArrowRight size={15} />
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Right column - Book card */}
+            <div className="lg:col-span-2">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="bg-white rounded-2xl border border-slate-100 p-5 shadow-sm"
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-semibold text-slate-900 text-sm">QuickLearn Library</h3>
+                  <Link
+                    to="/library"
+                    className="text-xs text-orange-500 hover:text-orange-600 font-semibold inline-flex items-center gap-1"
+                  >
+                    110+ titles <ArrowRight size={12} />
+                  </Link>
                 </div>
-              ))}
-            </motion.div>
+
+                {(() => {
+                  const heroBooks = featuredEbooks.slice(0, 8);
+                  const currentBook = heroBooks[heroBookIndex];
+                  const cat = categories.find((c) => c.id === currentBook?.category);
+                  return (
+                    <>
+                      <div className="bg-slate-50 rounded-xl p-4">
+                        <div className="flex gap-4 items-start">
+                          <div className="flex-shrink-0">
+                            {currentBook && (
+                              <BookCover
+                                title={currentBook.title}
+                                categoryColor={cat?.color ?? "#f97316"}
+                                categoryBg={cat?.bg ?? "#fff7ed"}
+                                size="sm"
+                                id={currentBook.id}
+                              />
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-bold text-slate-900 text-sm leading-tight mb-1">
+                              {currentBook?.title}
+                            </h4>
+                            <p className="text-slate-500 text-xs mb-2 line-clamp-2">
+                              {currentBook?.subtitle}
+                            </p>
+                            <p className="text-orange-500 font-bold text-sm mb-2">
+                              {currentBook?.price}
+                            </p>
+                            <button
+                              onClick={() => currentBook && setPreviewBook(currentBook)}
+                              className="text-xs font-semibold text-slate-900 hover:text-orange-500 transition-colors inline-flex items-center gap-1"
+                            >
+                              View <ArrowRight size={12} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between mt-4">
+                        <div className="flex gap-1.5">
+                          {heroBooks.map((_, i) => (
+                            <button
+                              key={i}
+                              onClick={() => setHeroBookIndex(i)}
+                              className={`h-2 rounded-full transition-all ${
+                                i === heroBookIndex ? "bg-orange-500 w-4" : "bg-slate-300 hover:bg-slate-400 w-2"
+                              }`}
+                              aria-label={`Go to book ${i + 1}`}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-xs text-slate-400 font-medium">
+                          {heroBookIndex + 1} / {heroBooks.length}
+                        </span>
+                      </div>
+                    </>
+                  );
+                })()}
+              </motion.div>
+            </div>
           </div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 pt-12 mt-12 border-t border-slate-200/60"
+          >
+            {[
+              { value: 12000, suffix: "+", label: "Verified Pakistani buyers", prefix: "" },
+              { value: 32, suffix: "L", label: "Avg. saved by self-planners", prefix: "Rs" },
+              { value: 48, suffix: "hr", label: "WhatsApp support response", prefix: "" },
+              { value: 98, suffix: "%", label: "Client satisfaction rate", prefix: "" },
+            ].map(({ value, suffix, label, prefix }) => (
+              <div key={label}>
+                <div className="text-2xl md:text-3xl font-bold text-slate-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                  {prefix}<Counter target={value} suffix={suffix} />
+                </div>
+                <p className="text-slate-400 text-xs mt-1">{label}</p>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 

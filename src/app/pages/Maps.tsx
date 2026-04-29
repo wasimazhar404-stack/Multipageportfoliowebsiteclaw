@@ -26,7 +26,7 @@ const madinahLandmarks = [
 
 export function Maps() {
   useEffect(() => {
-    document.title = "Sacred Maps | QuickFare";
+    document.title = "Umrah & Tours | QuickFare";
   }, []);
 
   return (
@@ -39,7 +39,7 @@ export function Maps() {
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <span className="inline-block text-orange-500 text-xs font-semibold uppercase tracking-widest mb-4 px-3 py-1 bg-orange-500/10 rounded-full border border-orange-500/20">
-              Sacred Maps
+              Umrah & Tours
             </span>
             <h1 className="text-white text-4xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Navigate the <span className="text-orange-500">Holy Cities</span>

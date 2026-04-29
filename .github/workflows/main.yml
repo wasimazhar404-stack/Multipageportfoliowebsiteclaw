@@ -43,3 +43,4 @@ jobs:
           REMOTE_USER: ${{ secrets.HOSTINGER_USER }}
           TARGET: ${{ secrets.HOSTINGER_REMOTE_PATH }}
           SOURCE: dist/
+          ARGS: -rlgoDzvc -i --delete
