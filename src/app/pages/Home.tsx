@@ -1,15 +1,17 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router";
 import { motion } from "motion/react";
 import {
   ArrowRight, ArrowUpRight, BookOpen, BarChart3, Plane,
-  Star, ChevronRight, MessageCircle, Users, Zap, Shield
+  Star, ChevronRight, MessageCircle, Users, Zap, Shield,
+  ChevronLeft,
 } from "lucide-react";
-import { EbookCard, EbookPreviewModal } from "../components/EbookCard";
-import { featuredEbooks } from "../data/ebooks";
+import { EbookPreviewModal } from "../components/EbookCard";
+import { featuredEbooks, categories } from "../data/ebooks";
 import { reviews } from "../data/reviews";
 import type { Ebook } from "../data/ebooks";
-import { Avatar } from "../components/BookCover";
+import { Avatar, BookCover } from "../components/BookCover";
+import useEmblaCarousel from "embla-carousel-react";
 
 /* Animated counter */
 function Counter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -49,6 +51,117 @@ function StarRating({ rating }: { rating: number }) {
           className={i < rating ? "text-orange-400 fill-orange-400" : "text-slate-200"}
         />
       ))}
+    </div>
+  );
+}
+
+/* Featured Books Carousel */
+function FeaturedCarousel({ onPreview }: { onPreview: (book: Ebook) => void }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, align: "start", skipSnaps: false }
+  );
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  const scrollTo = useCallback((i: number) => emblaApi?.scrollTo(i), [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setScrollSnaps(emblaApi.scrollSnapList());
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect();
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
+
+  /* Manual autoplay with 4s interval */
+  useEffect(() => {
+    if (!emblaApi) return;
+    const interval = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [emblaApi]);
+
+  const displayBooks = featuredEbooks.slice(0, 10);
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {displayBooks.map((book) => {
+            const cat = categories.find((c) => c.id === book.category);
+            return (
+              <div
+                key={book.id}
+                className="flex-[0_0_100%] min-w-0 sm:flex-[0_0_50%] lg:flex-[0_0_25%] pl-4 first:pl-0"
+              >
+                <div className="bg-white rounded-xl border border-slate-100 p-4 hover:shadow-md transition-shadow h-full flex flex-col">
+                  <div className="flex justify-center mb-3">
+                    <BookCover
+                      title={book.title}
+                      categoryColor={cat?.color ?? "#f97316"}
+                      categoryBg={cat?.bg ?? "#fff7ed"}
+                      size="sm"
+                      id={book.id}
+                    />
+                  </div>
+                  <h4 className="text-slate-900 font-bold text-sm leading-tight line-clamp-2 mb-1" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    {book.title}
+                  </h4>
+                  <p className="text-orange-500 text-xs font-bold mb-3">{book.price}</p>
+                  <div className="mt-auto">
+                    <button
+                      onClick={() => onPreview(book)}
+                      className="w-full py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors"
+                    >
+                      View
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Prev / Next */}
+      <div className="flex items-center justify-center gap-3 mt-6">
+        <button
+          onClick={scrollPrev}
+          className="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center text-slate-600 transition-colors"
+          aria-label="Previous"
+        >
+          <ChevronLeft size={16} />
+        </button>
+
+        {/* Dots */}
+        <div className="flex gap-1.5">
+          {scrollSnaps.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollTo(i)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                i === selectedIndex ? "bg-orange-500 w-4" : "bg-slate-300 hover:bg-slate-400"
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={scrollNext}
+          className="w-9 h-9 rounded-full border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center text-slate-600 transition-colors"
+          aria-label="Next"
+        >
+          <ChevronRight size={16} />
+        </button>
+      </div>
     </div>
   );
 }
@@ -193,7 +306,7 @@ export function Home() {
               {
                 icon: BookOpen,
                 title: "Digital eBook Library",
-                desc: "35+ premium Urdu eBooks covering Islamic finance, lifestyle, parenting, and travel. Instant delivery, lifetime access.",
+                desc: "110+ premium Urdu eBooks covering Islamic finance, lifestyle, parenting, travel, Quran, Hadith and more. Instant delivery, lifetime access.",
                 price: "From PKR 600",
                 link: "/library",
                 cta: "Browse Library",
@@ -271,7 +384,7 @@ export function Home() {
         </div>
       </section>
 
-      {/* FEATURED EBOOKS */}
+      {/* FEATURED EBOOKS CAROUSEL */}
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
@@ -287,22 +400,11 @@ export function Home() {
               to="/library"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-orange-500 hover:text-orange-600 transition-colors"
             >
-              View all 35+ books <ArrowRight size={15} />
+              View all 110+ books <ArrowRight size={15} />
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
-            {featuredEbooks.map((book) => (
-              <motion.div
-                key={book.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                <EbookCard book={book} onPreview={setPreviewBook} />
-              </motion.div>
-            ))}
-          </div>
+          <FeaturedCarousel onPreview={setPreviewBook} />
         </div>
       </section>
 

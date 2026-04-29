@@ -22,7 +22,7 @@ export function EbookCard({ book, onPreview }: EbookCardProps) {
       onMouseLeave={() => setHovered(false)}
     >
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-slate-50">
-        <BookCover title={book.title} categoryColor={color} categoryBg={bg} size="md" />
+        <BookCover title={book.title} categoryColor={color} categoryBg={bg} size="md" id={book.id} />
 
         {/* Category badge */}
         <div className="absolute top-3 left-3">
@@ -125,7 +125,7 @@ export function EbookPreviewModal({ book, onClose }: PreviewModalProps) {
         </button>
         <div className="flex gap-0">
           <div className="w-36 sm:w-44 flex-shrink-0 bg-slate-50">
-            <BookCover title={book.title} categoryColor={color} categoryBg={bg} size="lg" />
+            <BookCover title={book.title} categoryColor={color} categoryBg={bg} size="lg" id={book.id} />
           </div>
           <div className="flex-1 p-5 flex flex-col justify-between">
             <div>

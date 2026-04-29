@@ -218,7 +218,7 @@ export function Services() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { icon: BookOpen, title: "35+ Premium eBooks", desc: "Comprehensive library spanning Hajj, Ziyarat, Islamic Finance, Lifestyle, Parenting, and Health.", stat: "35+", statLabel: "Books", color: "#0d9488" },
+              { icon: BookOpen, title: "110+ Premium eBooks", desc: "Comprehensive library spanning 17 categories — Hajj, Ziyarat, Quran, Hadith, Seerah, Finance, Lifestyle, Parenting, Health, and more.", stat: "110+", statLabel: "Books", color: "#0d9488" },
               { icon: Globe, title: "Urdu Language", desc: "All content written in clear, simple Urdu for maximum accessibility across Pakistan and diaspora.", stat: "100%", statLabel: "Urdu", color: "#4f46e5" },
               { icon: Zap, title: "Instant Delivery", desc: "Receive your eBook immediately after purchase — PDF and mobile-optimized formats included.", stat: "PDF", statLabel: "Format", color: "#d97706" },
             ].map(({ icon: Icon, title, desc, stat, statLabel, color }, i) => (
