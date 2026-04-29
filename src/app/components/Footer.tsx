@@ -49,9 +49,9 @@ export function Footer() {
             <ul className="space-y-2.5">
               {[
                 { label: "Home", to: "/" },
-                { label: "Our Services", to: "/services" },
-                { label: "eBook Library", to: "/library" },
-                { label: "Maps", to: "/maps" },
+                { label: "Automate & Grow", to: "/automate-grow" },
+                { label: "QuickLearn", to: "/quicklearn" },
+                { label: "Umrah & Tours", to: "/umrah-tours" },
                 { label: "Contact Us", to: "/contact" },
               ].map((link) => (
                 <li key={link.to}>
