@@ -34,6 +34,22 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Verify secrets exist
+        env:
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          HOST: ${{ secrets.HOSTINGER_HOST }}
+          PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
+          USER: ${{ secrets.HOSTINGER_USER }}
+          PATH_REMOTE: ${{ secrets.HOSTINGER_REMOTE_PATH }}
+        run: |
+          if [ -z "$SSH_KEY" ]; then echo "❌ HOSTINGER_SSH_KEY is missing"; exit 1; fi
+          if [ -z "$HOST" ]; then echo "❌ HOSTINGER_HOST is missing"; exit 1; fi
+          if [ -z "$PORT" ]; then echo "❌ HOSTINGER_SSH_PORT is missing"; exit 1; fi
+          if [ -z "$USER" ]; then echo "❌ HOSTINGER_USER is missing"; exit 1; fi
+          if [ -z "$PATH_REMOTE" ]; then echo "❌ HOSTINGER_REMOTE_PATH is missing"; exit 1; fi
+          echo "✅ All secrets are present"
+        shell: bash
+
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v5.1.0
         env:
