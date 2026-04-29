@@ -22,6 +22,7 @@ export function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -30,6 +31,7 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(null);
     try {
       const res = await fetch(
         "https://csiokxaornvrjyfhkwxr.supabase.co/functions/v1/server/make-server-3a5e36a4/contact",
@@ -41,13 +43,14 @@ export function Contact() {
       );
       const data = await res.json();
       if (!res.ok || !data.success) {
-        console.error("Submission failed:", data.error || "Unknown error");
+        setError(data.error || "Something went wrong. Please try again.");
+      } else {
+        setSubmitted(true);
       }
     } catch (err) {
-      console.error("Network error:", err);
+      setError("Network error. Please check your connection and try again.");
     } finally {
       setLoading(false);
-      setSubmitted(true);
     }
   };
 
@@ -240,6 +243,11 @@ export function Contact() {
                       Send Us a Message
                     </h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      {error && (
+                        <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
+                          {error}
+                        </div>
+                      )}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="block text-xs font-semibold text-slate-600 mb-1.5">Full Name *</label>
