@@ -34,16 +34,20 @@ export function Contact() {
     setError(null);
     try {
       const res = await fetch(
-        "https://csiokxaornvrjyfhkwxr.supabase.co/functions/v1/server/make-server-3a5e36a4/contact",
+        "https://formsubmit.co/ajax/info@quickfairtravels.com",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            ...form,
+            _subject: `New Contact: ${form.subject}`,
+            _template: "table",
+          }),
         }
       );
       const data = await res.json();
-      if (!res.ok || !data.success) {
-        setError(data.error || "Something went wrong. Please try again.");
+      if (!res.ok || data.success === "false") {
+        setError(data.message || "Something went wrong. Please try again.");
       } else {
         setSubmitted(true);
       }
